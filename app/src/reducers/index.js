@@ -1,4 +1,8 @@
-export const initialState = {};
+export const initialState = {
+  movie: [],
+  isFetching: false,
+  error: ""
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
