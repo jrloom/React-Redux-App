@@ -1,22 +1,35 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { getFilm } from "../actions";
+import { getData } from "../actions";
 
-const Movies = ({ getFilm, ...props }) => {
+const Movies = ({ getData, ...props }) => {
   useEffect(() => {
-    getFilm();
-  }, [getFilm]);
+    getData();
+  }, [getData]);
 
   return (
     <div>
-      <div>Movie div</div>
+      {props.movie.map(movie => (
+        <h4 key={movie.id}>{movie.title}</h4>
+      ))}
+      {props.error}
     </div>
   );
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = state => ({
+  movie: state.data,
+  id: state.id,
+  title: state.title,
+  desc: state.desc,
+  director: state.director,
+  producer: state.producer,
+  release: state.release,
+  score: state.score,
+  error: state.error
+});
 
 export default connect(
   mapStateToProps,
-  { getFilm }
+  { getData }
 )(Movies);
