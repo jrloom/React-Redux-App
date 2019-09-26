@@ -8,24 +8,24 @@ const Movies = ({ getData, ...props }) => {
   }, [getData]);
 
   return (
-    <div>
+    <>
       {props.movie.map(movie => (
-        <h4 key={movie.id}>{movie.title}</h4>
+        <div key={movie.id}>
+          <h4>{movie.title}</h4>
+          <p>Description: {movie.description}</p>
+          <p>Director: {movie.director}</p>
+          <p>Producer: {movie.producer}</p>
+          <p>Release Date: {movie.release_date}</p>
+          <p>Score: {movie.rt_score}</p>
+        </div>
       ))}
-      {props.error}
-    </div>
+      <p>{props.error}</p>
+    </>
   );
 };
 
 const mapStateToProps = state => ({
   movie: state.data,
-  id: state.id,
-  title: state.title,
-  desc: state.desc,
-  director: state.director,
-  producer: state.producer,
-  release: state.release,
-  score: state.score,
   error: state.error
 });
 
