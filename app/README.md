@@ -1,11 +1,8 @@
-# Axios call
+# App
 
-```js
-  axios
-    .get("https://ghibliapi.herokuapp.com/films")
-    .then(resolve => console.log(resolve))
-    .catch(error => console.log("ohmuhgawdno --> ", error));
-```
+## API Calls
+
+### Films
 
 https://ghibliapi.herokuapp.com/films
 
@@ -19,8 +16,22 @@ Data:
 - relase_date
 - rt_score
 
-Also available
+### People
+
 https://ghibliapi.herokuapp.com/people
+
+### Locations
+
 https://ghibliapi.herokuapp.com/locations
+
+### Species
+
 https://ghibliapi.herokuapp.com/species
+
+### Vehicles
+
 https://ghibliapi.herokuapp.com/vehicles
+
+### Shortcomings
+
+I'd really like to include an image with each film, character, location, etc, but those are not included in the API. Would likely run into IP issues as well, so, plain text it is.
