@@ -1,35 +1,57 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { getData } from "../actions";
+import React from "react";
+import { makeStyles, Grid, Card, CardContent, Typography } from "@material-ui/core";
 
-const Movies = ({ getData, ...props }) => {
-  useEffect(() => {
-    getData();
-  }, [getData]);
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+    marginTop: theme.spacing(4),
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2)
+  },
+  paper: {
+    padding: theme.spacing(5)
+  },
+  verticalSpace: {
+    marginBottom: theme.spacing(2)
+  },
+  title: {
+    fontSize: 24
+  }
+}));
+
+const Movie = props => {
+  const classes = useStyles();
 
   return (
-    <>
-      {props.movie.map(movie => (
-        <div key={movie.id}>
-          <h4>{movie.title}</h4>
-          <p>Description: {movie.description}</p>
-          <p>Director: {movie.director}</p>
-          <p>Producer: {movie.producer}</p>
-          <p>Release Date: {movie.release_date}</p>
-          <p>Score: {movie.rt_score}</p>
-        </div>
-      ))}
-      <p>{props.error}</p>
-    </>
+    <Grid container className={classes.root} spacing={2}>
+      <Grid item xs={12}>
+        <Grid container justify="space-around" spacing={5}>
+          {props.movie.map(movie => (
+            <Grid item xs={6} key={movie.id}>
+              <Card>
+                <CardContent>
+                  <Grid container alignItems="center" justify="space-between" className={classes.verticalSpace}>
+                    <Typography component="h2" className={classes.title} color="textSecondary">
+                      {movie.title}
+                    </Typography>
+                    <Typography color="textSecondary">{movie.release_date}</Typography>
+                  </Grid>
+                  <Grid container alignItems="center" justify="space-between" className={classes.verticalSpace}>
+                    <Typography>Directed by {movie.director}</Typography>
+                    <Typography>Produced by {movie.producer}</Typography>
+                  </Grid>
+                  <Typography>{movie.description}</Typography>
+                  <Grid container justify="flex-end">
+                    <Typography>{movie.rt_score}% fresh</Typography>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
   );
 };
 
-const mapStateToProps = state => ({
-  movie: state.data,
-  error: state.error
-});
-
-export default connect(
-  mapStateToProps,
-  { getData }
-)(Movies);
+export default Movie;
