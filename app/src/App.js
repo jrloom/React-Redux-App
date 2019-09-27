@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const App = props => {
+const App = ({ getData, movie }) => {
   const classes = useStyles();
 
   return (
@@ -32,11 +32,11 @@ const App = props => {
             Studio Ghibli
           </Grid>
           <Grid component="nav" item xs={12}>
-            <Nav />
+            <Nav getData={getData} />
           </Grid>
         </Grid>
       </Paper>
-      <Movies movie={props.movie} />
+      <Movies movie={movie} />
     </div>
   );
 };

@@ -19,14 +19,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Movie = props => {
+const Movie = ({ movie }) => {
   const classes = useStyles();
 
   return (
     <Grid container className={classes.root} spacing={2}>
       <Grid item xs={12}>
         <Grid container justify="space-around" spacing={5}>
-          {props.movie.map(movie => (
+          {movie.map(movie => (
             <Grid item xs={6} key={movie.id}>
               <Card>
                 <CardContent>

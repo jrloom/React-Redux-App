@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
-import { getData } from "../actions";
 
 import { makeStyles, Tab, Tabs } from "@material-ui/core";
 
@@ -10,7 +8,7 @@ const useStyles = makeStyles({
   }
 });
 
-const Nav = ({ getData, ...props }) => {
+const Nav = ({ getData }) => {
   const classes = useStyles();
   const [value, setValue] = useState(0);
 
@@ -32,12 +30,4 @@ const Nav = ({ getData, ...props }) => {
   );
 };
 
-const mapStateToProps = state => ({
-  movie: state.data,
-  error: state.error
-});
-
-export default connect(
-  mapStateToProps,
-  { getData }
-)(Nav);
+export default Nav;
